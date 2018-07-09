@@ -12,6 +12,13 @@ fn main() {
         .subcommand(SubCommand::with_name("create")
             .about("creates key data")
         )
+        .subcommand(SubCommand::with_name("read")
+            .about("reads key data")
+            .arg(Arg::with_name("INPUT")
+                .required(true)
+                .help("the key data to read")
+            )
+        )
         .get_matches();
 
     if let Some(_) = matches.subcommand_matches("create") {
@@ -22,5 +29,7 @@ fn main() {
                                 .to_hex();
         println!("key_data: {}", &key_data);
         println!("size: {}", key_data.split_whitespace().count());
+    } else if let Some(_) = matches.subcommand_matches("read") {
+
     }
 }
